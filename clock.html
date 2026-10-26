@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>24h Clock</title>
+<style>
+  html, body {
+    height: 100%;
+    margin: 0;
+    background: #000;
+  }
+  body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  #clock {
+    color: #ff8c00;
+    font-family: "Courier New", monospace;
+    font-size: 18vw;
+    font-weight: bold;
+    letter-spacing: 0.05em;
+    text-shadow: 0 0 20px rgba(255, 140, 0, 0.5);
+  }
+  #date {
+    color: #ff8c00;
+    font-family: "Courier New", monospace;
+    font-size: 4vw;
+    margin-top: 1vw;
+    opacity: 0.85;
+  }
+</style>
+</head>
+<body>
+  <div id="clock">00:00:00</div>
+  <div id="date">00/00/Sunday</div>
+  <script>
+    const days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+    function updateClock() {
+      const now = new Date();
+      const h = String(now.getHours()).padStart(2, '0');
+      const m = String(now.getMinutes()).padStart(2, '0');
+      const s = String(now.getSeconds()).padStart(2, '0');
+      const mo = String(now.getMonth() + 1).padStart(2, '0');
+      const d = String(now.getDate()).padStart(2, '0');
+      document.getElementById('clock').textContent = h + ':' + m + ':' + s;
+      document.getElementById('date').textContent = mo + '/' + d + '/' + days[now.getDay()];
+    }
+    updateClock();
+    setInterval(updateClock, 1000);
+  </script>
+</body>
+</html>
